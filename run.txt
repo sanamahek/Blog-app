@@ -1,0 +1,4 @@
+#coppy below cmds and run in terminal
+
+docker build -t sana-blog-app .
+docker run -p 5000:5000 sana-blog-app
