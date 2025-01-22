@@ -75,5 +75,3 @@ To deploy the application using Kubernetes, follow these steps:
     ```
 
 The application should now be accessible via the URL provided by the `minikube service` command.
-
-## Directory Structure
