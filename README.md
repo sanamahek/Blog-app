@@ -52,24 +52,19 @@ To deploy the application using Kubernetes, follow these steps:
     kubectl apply -f kubernetes/service.yaml
     ```
 
-5. Build the Docker image:
-    ```sh
-    docker build -t blog-app:latest .
-    ```
-
-6. Load the Docker image into Minikube:
+5. Load the Docker image into Minikube:
     ```sh
     minikube image load blog-app:latest
     ```
 
-7. Verify the deployment:
+6. Verify the deployment:
     ```sh
     kubectl get deployments
     kubectl get pods
     kubectl get svc
     ```
 
-8. Access the service:
+7. Access the service:
     ```sh
     minikube service blog-app-service
     ```
