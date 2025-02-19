@@ -1,0 +1,49 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  IMAGE_NAME: flask-blog-app
+  IMAGE_TAG: 1.0
+  IBM_REGION: us-south # Replace with your IBM Cloud region
+  IBM_NAMESPACE: flask-blog-ns # Replace with your IBM Cloud namespace
+  AWS_REGION: us-west-2 # Replace with your AWS region
+  AWS_ACCOUNT_ID: 123456789012 # Replace with your AWS account ID
+
+# Stage 1: Build the Docker Image
+build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker build -t $IMAGE_NAME:$IMAGE_TAG .
+    - echo "Docker image built successfully."
+  artifacts:
+    paths:
+      - Dockerfile
+  tags:
+    - docker
+
+# Stage 2: Test the Application
+test:
+  stage: test
+  image: python:3.9-slim
+  script:
+    - pip install -r requirements.txt
+    - pytest # Ensure you have tests in your repository
+    - echo "Tests completed successfully."
+
+# Stage 3: Deploy to Kubernetes (Minikube or Cloud-Based Cluster)
+deploy_to_kubernetes:
+  stage: deploy
+  image: bitnami/kubectl:latest
+  script:
+    - kubectl apply -f deployment.yaml
+    - kubectl apply -f service.yaml
+    - kubectl get pods
+    - kubectl get svc
+    - echo "Application deployed to Kubernetes."
+  only:
+    - main
