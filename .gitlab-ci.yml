@@ -6,10 +6,6 @@ stages:
 variables:
   IMAGE_NAME: flask-blog-app
   IMAGE_TAG: 1.0
-  IBM_REGION: us-south # Replace with your IBM Cloud region
-  IBM_NAMESPACE: flask-blog-ns # Replace with your IBM Cloud namespace
-  AWS_REGION: us-west-2 # Replace with your AWS region
-  AWS_ACCOUNT_ID: 123456789012 # Replace with your AWS account ID
 
 # Stage 1: Build the Docker Image
 build:
